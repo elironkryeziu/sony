@@ -21,17 +21,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
-    //sony
-    Route::get('/sony', 'SonyController@index')->name('sony');
-    Route::get('/sony/{id}', 'SonyController@show')->name('single-sony');
-    Route::post('/sony', 'SonyController@start')->name('startSony');
-    
-    //pije
-    Route::get('/pije', 'PijeController@index')->name('pije');
-});
+//sony
+Route::get('/sony', 'SonyController@index')->name('sony')->middleware('auth');
+Route::get('/sony/{id}', 'SonyController@show')->name('single-sony')->middleware('auth');
+Route::post('/sony', 'SonyController@start')->name('startSony')->middleware('auth');
+
+//fatura
+Route::get('/admin/sony', 'FaturaController@index')->name('fatura')->middleware('admin');
+Route::get('/admin/pije', 'FaturaController@faturapije')->name('fatura-pije')->middleware('admin');
 
 
-Route::group(['middleware' => 'admin'], function () {
-});
+//pije
+Route::get('/pije', 'PijeController@index')->name('pije')->middleware('auth');;
+
 

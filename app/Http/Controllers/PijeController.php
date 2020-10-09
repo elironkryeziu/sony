@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Pije;
 use Illuminate\Http\Request;
 
 class PijeController extends Controller
 {
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +14,12 @@ class PijeController extends Controller
      */
     public function index()
     {
-        return view('pije');
+        $pijet = Pije::all();
+        
+        $data = [
+            'pijet' => $pijet
+        ];
+
+        return view('pije',$data);
     }
 }

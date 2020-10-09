@@ -22,12 +22,12 @@
             </a>
             </li>
         <li class="c-sidebar-nav-title">Admin</li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/sony">
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/sony">
              Sony
             </a>
             </li>
             </li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/pije">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/pije">
              Pije
             </a>
             </li>
