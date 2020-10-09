@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSoniesTable extends Migration
+class CreatePijesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateSoniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sony', function (Blueprint $table) {
+        Schema::create('pijet', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
+            $table->string('name');
+            $table->decimal('price',9,3);
+            $table->integer('qty');
 
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ class CreateSoniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sonies');
+        Schema::dropIfExists('pijes');
     }
 }

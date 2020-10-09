@@ -4,50 +4,32 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        <div class="container">
         <div class="row">
-        <div class="col">
-        <img style="width:60%; position: absolute;" src="{{ asset('storage/tv-off.png') }}" class="css-class" alt="alt text">
-        <p style="top:60; right: 50; bottom: 50; left:90; position:absolute;">1</p>
+            <div class="row">
+            @foreach ($sonys as $sony)
+
+            <div class="col">
+            <a class="badge bg-info text-align-center">Sony {{ $sony->id }}</a>
+            <br>
+            @if ($sony->isOn == 1)
+                <a href="{{ url('sony',[$sony->id]) }}">
+                <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-on.png') }}" class="css-class" alt="alt text">
+                </a>
+            @else
+                <a href="{{ url('sony',[$sony->id]) }}">
+                <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-off.png') }}" class="css-class" alt="alt text">
+                </a>
+            @endif
+                </div>
+                @unless (($loop->index + 1) %3 != 0)
+                <div class="w-100"></div>
+                @endunless
+                @endforeach
+            </div>
+           
         </div>
-        <div class="col">
-        <img style="width:60%;" src="{{ asset('storage/tv-off.png') }}" class="css-class" alt="alt text">
-        </div>
-        <div class="col">
-        <img style="width:60%;" src="{{ asset('storage/tv-off.png') }}" class="css-class" alt="alt text">
-        </div>
-    </div>
-        <!-- <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
-            </tbody>
-            </table> -->
-        </div>
+        
     </div>
 </div>
-
 @endsection

@@ -1,21 +1,41 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-show" id="sidebar">
       <div class="c-sidebar-brand d-lg-down-none">
-      {{ config('app.name', 'Laravel') }}
+      Sony Playstation
         
       </div>
       <ul class="c-sidebar-nav">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/">
-             Dashboard
-            <!-- <span class="badge badge-info">NEW</span> -->
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/">
+             Home
             </a>
             </li>
-        <li class="c-sidebar-nav-title">Theme</li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/home">
+             Dashboard
+            </a>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/sony">
+             Sony
+            </a>
+            </li>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/pije">
+             Pije
+            </a>
+            </li>
+        <li class="c-sidebar-nav-title">Admin</li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/sony">
+             Sony
+            </a>
+            </li>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/pije">
+             Pije
+            </a>
+            </li>
+        <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
              Logout</a></li>
         
       </ul>
-      <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>
 
     
