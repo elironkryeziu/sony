@@ -9,17 +9,13 @@
 
             <div class="row">
             @foreach ($pijet as $pije)
-                <div class="col mb-4">
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="myFunction({{$pije->id}});">
+                <button type="button" class="btn btn-outline-primary btn-lg mb-3 mr-3" onclick="shite({{ $pije->id }});">
                 {{ $pije->name }}
                 </button>
-                </div>
-                @unless (($loop->index + 1) %4 != 0)
-                <div class="w-100"></div>
-                @endunless
             @endforeach
             </div>
             <h4>Pijet e papaguara:</h4>
+            <p id="demo"></p>
             <table class="table table-hover">
             <thead>
                 <tr>
@@ -30,12 +26,14 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach ($pijet_papaguar as $pije)
                 <tr>
-                <th scope="row">1</th>
-                <td>Coca Cola</td>
-                <td>1.0</td>
-                <td><button type="button" class="btn btn-pill btn-success">Paguaje</button></td>
+                <th scope="row">{{ $loop->index+1}}</th>
+                <td>{{ $pije->pija->name }}</td>
+                <td>{{ $pije->price }}</td>
+                <td><button type="button" class="btn btn-pill btn-success" onclick="paguaj({{ $pije->id }});">Paguaje</button></td>
                 </tr>
+              @endforeach
             </tbody>
             </table>
 
@@ -46,11 +44,36 @@
 
 
 <script>
-function myFunction(id) {
-  var r = confirm("A jeni i sigurt ?"+id);
+function shite(id) {
+var r = confirm("A jeni i sigurt ?");
 if (r == true) {
-  txt = "You pressed OK!";
+    fetch(`/sell/${id}`, {
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    method: "POST", 
+  }).then(res => {
+    // console.log("Request complete! response:", res);
+    location.reload();
+  });
 } else {
+  txt = "You pressed Cancel!";
+}
+}
+function paguaj(id) {
+  var r = confirm("A jeni i sigurt ?");
+  if (r == true) {
+    fetch(`/pay/${id}`, {
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    method: "POST", 
+  }).then(res => {
+    // console.log("Request complete! response:", res);
+    location.reload();
+  });
+
+  } else {
   txt = "You pressed Cancel!";
 }
 }

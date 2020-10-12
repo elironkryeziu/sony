@@ -9,6 +9,10 @@
             </a>
             </li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/home">
+                <!-- <i class="cil-align-left"></i> -->
+                <svg class="c-sidebar-nav-icon">
+<use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop1"></use>
+</svg>
              Dashboard
             </a>
             </li>

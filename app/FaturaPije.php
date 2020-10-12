@@ -12,7 +12,7 @@ class FaturaPije extends Model
 
     public function pija()
     {
-        return $this->belongsTo('App\Pije');
+        return $this->belongsTo('App\Pije','pije_id');
     }
 
     public function user()

@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sony', 'SonyController@index')->name('sony')->middleware('auth');
 Route::get('/sony/{id}', 'SonyController@show')->name('single-sony')->middleware('auth');
 Route::post('/sony', 'SonyController@start')->name('startSony')->middleware('auth');
+Route::post('/close/{id}', 'SonyController@close')->name('closeSony')->middleware('auth');
+
 
 //fatura
 Route::get('/admin/sony', 'FaturaController@index')->name('fatura')->middleware('admin');
@@ -32,6 +34,14 @@ Route::get('/admin/pije', 'FaturaController@faturapije')->name('fatura-pije')->m
 
 
 //pije
-Route::get('/pije', 'PijeController@index')->name('pije')->middleware('auth');;
+Route::get('/pije', 'PijeController@index')->name('pije')->middleware('auth');
+Route::get('/pije/new', 'PijeController@create')->name('newPije')->middleware('admin');
+Route::get('/pije/update/{id}', 'PijeController@update')->middleware('admin');
+
+Route::post('/pije/new', 'FaturaController@store')->name('addPije')->middleware('admin');
+Route::put('/pije/update/{id}', 'FaturaController@update')->name('updatePije')->middleware('admin');
+
+Route::post('/sell/{id}', 'PijeController@sell')->name('sellPije')->middleware('auth');
+Route::post('/pay/{id}', 'PijeController@pay')->name('payPije')->middleware('auth');
 
 
