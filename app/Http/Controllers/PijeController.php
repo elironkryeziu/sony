@@ -65,4 +65,34 @@ class PijeController extends Controller
         return view('new-pije');
 
     }
+
+    public function furnizim()
+    {
+        $pijet = Pije::all();
+        $data = [
+            'pijet' => $pijet,
+        ];
+
+        return view('suppy',$data);
+    }
+
+    public function addFurnizim(Request $request)
+    {
+        $pijet = Pije::all();
+        foreach ($pijet as $pija)
+        {
+            if (isset($request[$pija->id]))
+            {
+                $pija->qty += intval($request[$pija->id]);
+                $pija->update();
+            }
+        }
+
+        $data = [
+            'pijet' => $pijet
+        ];
+
+        return view('admin-pije',$data);
+
+    }
 }

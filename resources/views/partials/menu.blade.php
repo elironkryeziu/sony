@@ -9,11 +9,7 @@
             </a>
             </li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/home">
-                <!-- <i class="cil-align-left"></i> -->
-                <svg class="c-sidebar-nav-icon">
-<use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop1"></use>
-</svg>
-             Dashboard
+            Dashboard
             </a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/sony">
@@ -22,7 +18,7 @@
             </li>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/pije">
-             Pije
+             Pijet
             </a>
             </li>
         <li class="c-sidebar-nav-title">Admin</li>
@@ -32,7 +28,7 @@
             </li>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/pije">
-             Pije
+             Pijet
             </a>
             </li>
         <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -14,12 +14,15 @@ class FaturaController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $faturat = Fatura::all();
+        // return $request;
+        $faturat = Fatura::whereDate('created_at', $request->day)->get();
+        // dd($faturat);
 
         $data = [
-            'faturat' => $faturat
+            'faturat' => $faturat,
+            'totali' => $faturat->sum('price')
         ];
 
         return view('admin-sony',$data);

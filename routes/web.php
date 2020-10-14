@@ -35,10 +35,12 @@ Route::get('/admin/pije', 'FaturaController@faturapije')->name('fatura-pije')->m
 
 //pije
 Route::get('/pije', 'PijeController@index')->name('pije')->middleware('auth');
+Route::get('/pije/furnizim', 'PijeController@furnizim')->name('pije')->middleware('auth');
 Route::get('/pije/new', 'PijeController@create')->name('newPije')->middleware('admin');
 Route::get('/pije/update/{id}', 'PijeController@update')->middleware('admin');
 
 Route::post('/pije/new', 'FaturaController@store')->name('addPije')->middleware('admin');
+Route::post('/pije/furnizim', 'PijeController@addFurnizim')->name('furnizim')->middleware('admin');
 Route::put('/pije/update/{id}', 'FaturaController@update')->name('updatePije')->middleware('admin');
 
 Route::post('/sell/{id}', 'PijeController@sell')->name('sellPije')->middleware('auth');

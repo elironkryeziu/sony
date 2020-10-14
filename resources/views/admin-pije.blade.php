@@ -7,7 +7,8 @@
         <div class="container">
         <h4>Lista e pijeve</h4>
         <br>
-        <a href="/pije/new" class="btn btn-primary mb-3">Shto</a>
+        <a href="/pije/new" class="btn btn-primary mb-3">Shto pije te re</a>
+        <a href="/pije/furnizim" class="btn btn-primary mb-3">Shto furnizim</a>
         <table class="table table-bordered">
         <thead>
             <tr>
