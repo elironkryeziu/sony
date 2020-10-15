@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pije;
 use App\Fatura;
+use Carbon\Carbon;
 use App\FaturaPije;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,33 @@ class FaturaController extends Controller
      */
     public function index(Request $request)
     {
-        // return $request;
-        $faturat = Fatura::whereDate('created_at', $request->day)->get();
-        // dd($faturat);
+
+        $request->day ? $day = $request->day : $day = today()->toDateString();
+
+        if ($request->period)
+        {
+            switch ($request->period) {
+                case 'month':
+                    $start = new Carbon('first day of this month');
+                  break;
+                case 'week':
+                    $start = new Carbon('first day of this week');
+                  break;
+                case 'day':
+                    $start = now()->subDay();
+                  break;
+                default:
+                    $start = today();
+            }
+            $faturat = Fatura::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
+        } else 
+        {
+            $faturat = Fatura::whereDate('created_at', $day)->orderBy('created_at','desc')->get();
+
+        }
 
         $data = [
+            'day' => $day,
             'faturat' => $faturat,
             'totali' => $faturat->sum('price')
         ];
@@ -28,9 +51,43 @@ class FaturaController extends Controller
         return view('admin-sony',$data);
     }
 
+    public function indexPijet (Request $request)
+    {
+        $request->day ? $day = $request->day : $day = today()->toDateString();
+
+        if ($request->period)
+        {
+            switch ($request->period) {
+                case 'month':
+                    $start = new Carbon('first day of this month');
+                  break;
+                case 'week':
+                    $start = new Carbon('first day of this week');
+                  break;
+                case 'day':
+                    $start = now()->subDay();
+                  break;
+                default:
+                    $start = today();
+            }
+            $faturat = FaturaPije::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
+        } else 
+        {
+            $faturat = FaturaPije::whereDate('created_at', $day)->orderBy('created_at','desc')->get();
+
+        }
+
+        $data = [
+            'day' => $day,
+            'faturat' => $faturat,
+            'totali' => $faturat->sum('price')
+        ];
+
+        return view('sales',$data);
+    }
+
     public function faturapije()
     {
-        // $faturat = FaturaPije::all();
         $pijet = Pije::all();
 
         $data = [

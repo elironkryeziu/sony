@@ -30,7 +30,8 @@ Route::post('/close/{id}', 'SonyController@close')->name('closeSony')->middlewar
 
 //fatura
 Route::get('/admin/sony', 'FaturaController@index')->name('fatura')->middleware('admin');
-Route::get('/admin/pije', 'FaturaController@faturapije')->name('fatura-pije')->middleware('admin');
+Route::get('/admin/shitjet', 'FaturaController@indexPijet')->name('faturatPije')->middleware('admin');
+Route::get('/admin/pije', 'FaturaController@faturapije')->middleware('admin');
 
 
 //pije
