@@ -35,6 +35,30 @@ class FaturaAktive extends Model
     public function getpriceAttribute()
     {
         $minutes = $this->minutes;
-        return (1.666*$minutes)/100;
+        if ($minutes > 1)
+        {
+            if ($this->type == 2)
+            {
+                if ($minutes < 30)
+                {
+                    return 0.5;
+                } else
+                {
+                    return floor($minutes/6)/10;
+                }
+            } else 
+            {
+                if ($minutes < 30)
+                {
+                    return 1.0;
+                } else
+                {
+                    return (2*floor($minutes/6))/10;
+                }
+            }
+        } else
+        {
+            return 0;
+        }
     }
 }

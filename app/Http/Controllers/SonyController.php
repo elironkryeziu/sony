@@ -90,7 +90,7 @@ class SonyController extends Controller
             ]);
             $f_aktive->delete();
 
-            return "succes";
+            return $fatura;
           } catch (\Exception $e) {
           
               return $e->getMessage();

@@ -60,7 +60,7 @@
             @csrf
             <div class="form-check form-check-inline mt-4">
                 <input class="form-check-input" type="radio" name="type" id="type2" value=2>
-                <label class="form-check-label" for="inlineRadio1">2 Persona</label>
+                <label class="form-check-label" for="inlineRadio1" checked>2 Persona</label>
                 </div>
                 <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="type" id="type4" value=4>
@@ -72,6 +72,26 @@
             @endif
 
             </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="fatura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-content"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
         </div>
         
     </div>
@@ -87,11 +107,20 @@
             },
             method: "POST", 
         }).then(res => {
-            location.replace("/sony");
+            // location.replace("/sony");
+            console.log(res.body)
+            // var modal = $('#fatura').modal();
+            // modal.find('.modal-content').text(res);
+            // modal.show(true);
+
         });
         } else {
         txt = "You pressed Cancel!";
         }
+    }
+    function shfaqFaturen()
+    {
+
     }
 </script>
 
