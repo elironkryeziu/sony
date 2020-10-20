@@ -9,10 +9,32 @@
         <form action="{{ route('fatura') }}" method="get">
         @csrf
         <div class="form-group">
-        <p>Zgjedh daten:<p>
+        <p>Zgjedh daten dhe sonyn:<p>
             <input type="date" name='day' id="datepicker" value="{{ $day }}"></p>
+
+            <label>Sony:</label>
+            <select name="sony" id="sony">
+            <option value=""></option>
+            <option value="all">Te gjithe</option>
+            @foreach ($sonys as $sony)
+                <option value="{{ $sony->number }}">Sony {{ $sony->number }}</option>
+            @endforeach
+            </select>
+
+            <label>Puntori:</label>
+            <select name="user" id="user">
+            <option value=""></option>
+            <option value="all">Te gjithe</option>
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->name }}</option>
+            @endforeach
+            </select>
+
+            <br> <br>
+
             <input type="submit" class="btn btn-primary" value="Filtro"/>
         </div>
+       
         </form>
 
         <div class="row">

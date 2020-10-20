@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pije;
+use App\Sony;
+use App\User;
 use App\Fatura;
 use Carbon\Carbon;
 use App\FaturaPije;
@@ -19,6 +21,9 @@ class FaturaController extends Controller
     {
 
         $request->day ? $day = $request->day : $day = today()->toDateString();
+        $start = new Carbon($day);
+        $sonys = Sony::all();
+        $users = User::all();
 
         if ($request->period)
         {
@@ -35,14 +40,16 @@ class FaturaController extends Controller
                 default:
                     $start = today();
             }
-            $faturat = Fatura::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
+            $faturat = Fatura::where('created_at','>=', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
         } else 
         {
-            $faturat = Fatura::whereDate('created_at','>', $day)->orderBy('created_at','desc')->get();
+            $faturat = Fatura::where('created_at','>=', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
 
         }
 
         $data = [
+            'sonys' => $sonys,
+            'users' => $users,
             'day' => $day,
             'faturat' => $faturat,
             'totali' => $faturat->sum('price')
@@ -54,6 +61,7 @@ class FaturaController extends Controller
     public function indexPijet (Request $request)
     {
         $request->day ? $day = $request->day : $day = today()->toDateString();
+        $start = new Carbon($day);
 
         if ($request->period)
         {
@@ -70,10 +78,10 @@ class FaturaController extends Controller
                 default:
                     $start = today();
             }
-            $faturat = FaturaPije::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
+            $faturat = FaturaPije::where('created_at','>', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
         } else 
         {
-            $faturat = FaturaPije::whereDate('created_at','>', $day)->orderBy('created_at','desc')->get();
+            $faturat = FaturaPije::where('created_at','>', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
 
         }
 
