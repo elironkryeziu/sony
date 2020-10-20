@@ -13,16 +13,23 @@
             <a class="badge bg-info text-align-center">Sony {{ $sony->id }}</a>
             <br>
             @if ($sony->isOn == 1)
+                @if ($sony->type == 2)
+
                 <a href="{{ url('sony',[$sony->id]) }}">
-                <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-on.png') }}" class="css-class" alt="alt text">
+                <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-on-2.png') }}" class="css-class" alt="alt text">
                 </a>
+                @else
+                <a href="{{ url('sony',[$sony->id]) }}">
+                <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-on-4.png') }}" class="css-class" alt="alt text">
+                </a>
+                @endif
             @else
                 <a href="{{ url('sony',[$sony->id]) }}">
                 <img style="width:60%;margin-bottom: 10px;" src="{{ asset('storage/tv-off.png') }}" class="css-class" alt="alt text">
                 </a>
             @endif
                 </div>
-                @unless (($loop->index + 1) %3 != 0)
+                @unless (($loop->index + 1) %2 != 0)
                 <div class="w-100"></div>
                 @endunless
                 @endforeach

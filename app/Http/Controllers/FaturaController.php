@@ -38,7 +38,7 @@ class FaturaController extends Controller
             $faturat = Fatura::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
         } else 
         {
-            $faturat = Fatura::whereDate('created_at', $day)->orderBy('created_at','desc')->get();
+            $faturat = Fatura::whereDate('created_at','>', $day)->orderBy('created_at','desc')->get();
 
         }
 
@@ -73,7 +73,7 @@ class FaturaController extends Controller
             $faturat = FaturaPije::whereDate('created_at','>', $start->toDateString())->orderBy('created_at','desc')->get();
         } else 
         {
-            $faturat = FaturaPije::whereDate('created_at', $day)->orderBy('created_at','desc')->get();
+            $faturat = FaturaPije::whereDate('created_at','>', $day)->orderBy('created_at','desc')->get();
 
         }
 

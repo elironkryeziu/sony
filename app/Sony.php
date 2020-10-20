@@ -24,4 +24,16 @@ class Sony extends Model
             return 0;
         }
     }
+
+    public function gettypeAttribute()
+    {
+        if (FaturaAktive::where('sony_id',$this->id)->exists())
+        {
+            $type = FaturaAktive::where('sony_id',$this->id)->first();
+            return $type->type;
+        } else 
+        {
+            return 0;
+        }
+    }
 }
