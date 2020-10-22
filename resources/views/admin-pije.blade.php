@@ -26,8 +26,8 @@
             <td>{{ $pija->name }}</td>
             <td>{{ $pija->price }} €</td>
             <td>{{ $pija->qty }}</td>
-            <td class="text-center"><a href="/pije/update/{{$pija->id}}" class="btn btn-pill btn-dark"> Ndrysho</a>
-            </td>
+            <td class="text-center"><a href="/pije/update/{{$pija->id}}" class="btn btn-pill btn-dark mr-2"> Ndrysho</a>
+            <button onclick="fshije({{$pija->id}})" class="btn btn-pill btn-youtube"> Fshije</button>
             </tr>
         @endforeach
         </tbody>
@@ -35,4 +35,27 @@
         
     </div>
 </div>
+
+<script>
+    function fshije(id) {
+        var r = confirm("A jeni i sigurt ?"+id);
+        if (r == true) {
+            fetch(`/pije/${id}`, {
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method: "DELETE", 
+        }).then(res => {
+            location.replace("/admin/pije");
+            // console.log(res.body)
+            // var modal = $('#fatura').modal();
+            // modal.find('.modal-content').text(res);
+            // modal.show(true);
+
+        });
+        } else {
+        txt = "You pressed Cancel!";
+        }
+    }
+</script>
 @endsection
