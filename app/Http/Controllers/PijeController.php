@@ -66,6 +66,13 @@ class PijeController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        $pija = Pije::find($id);
+        $pija->delete();
+        
+    }
+
     public function furnizim()
     {
         $pijet = Pije::all();

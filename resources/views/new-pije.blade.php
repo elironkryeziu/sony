@@ -8,7 +8,7 @@
         <a href="/admin/pije" class="btn btn-secondary mb-4">< Kthehu</a>
         @if (isset($pija))
         <h3>{{ $pija->name }}</h3>
-        <form action="{{ route('updatePije', ['id'=>$pija->id]) }}" method="update">
+        <form action="{{ route('updatePije', ['id'=>$pija->id]) }}" method="post">
         @csrf
         <div class="form-group">
             <label for="exampleFormControlInput1">Pija</label>

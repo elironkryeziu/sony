@@ -43,6 +43,7 @@ Route::get('/pije/update/{id}', 'PijeController@update')->middleware('admin');
 Route::post('/pije/new', 'FaturaController@store')->name('addPije')->middleware('admin');
 Route::post('/pije/furnizim', 'PijeController@addFurnizim')->name('furnizim')->middleware('admin');
 Route::put('/pije/update/{id}', 'FaturaController@update')->name('updatePije')->middleware('admin');
+Route::delete('/pije/{id}', 'PijeController@delete')->middleware('admin');
 
 Route::post('/sell/{id}', 'PijeController@sell')->name('sellPije')->middleware('auth');
 Route::post('/pay/{id}', 'PijeController@pay')->name('payPije')->middleware('auth');

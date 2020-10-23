@@ -25,27 +25,26 @@ class FaturaController extends Controller
         $sonys = Sony::all();
         $users = User::all();
 
-        if ($request->period)
-        {
-            switch ($request->period) {
-                case 'month':
-                    $start = new Carbon('first day of this month');
-                  break;
-                case 'week':
-                    $start = new Carbon('first day of this week');
-                  break;
-                case 'day':
-                    $start = now()->subDay();
-                  break;
-                default:
-                    $start = today();
-            }
-            $faturat = Fatura::where('created_at','>=', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
-        } else 
-        {
-            $faturat = Fatura::where('created_at','>=', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
+        $faturat = Fatura::where('created_at','>', $start->setTime(7,0,0));
 
+        if ($request->sony)
+        {
+            if ($request->sony != "all" || $request->sony != "")
+            {
+                $faturat = $faturat->where('sony_id',$request->sony);
+            }
         }
+
+        if ($request->user)
+        {
+            if ($request->user != "all" || $request->user != "")
+            {
+                $faturat = $faturat->where('user_id',$request->user);
+
+            }
+        }
+
+        $faturat = $faturat->orderBy('created_at','desc')->get();
 
         $data = [
             'sonys' => $sonys,
@@ -55,6 +54,8 @@ class FaturaController extends Controller
             'totali' => $faturat->sum('price')
         ];
 
+        return $data;
+
         return view('admin-sony',$data);
     }
 
@@ -62,30 +63,33 @@ class FaturaController extends Controller
     {
         $request->day ? $day = $request->day : $day = today()->toDateString();
         $start = new Carbon($day);
+        $pijet = Pije::all();
+        $users = User::all();
 
-        if ($request->period)
+        $faturat = FaturaPije::where('updated_at','>', $start->setTime(7,0,0))->where('paguar',1);
+
+        if ($request->pija)
         {
-            switch ($request->period) {
-                case 'month':
-                    $start = new Carbon('first day of this month');
-                  break;
-                case 'week':
-                    $start = new Carbon('first day of this week');
-                  break;
-                case 'day':
-                    $start = now()->subDay();
-                  break;
-                default:
-                    $start = today();
+            if ($request->pija != "all" || $request->pija != "")
+            {
+                $faturat = $faturat->where('pije_id',$request->pija);
             }
-            $faturat = FaturaPije::where('created_at','>', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
-        } else 
-        {
-            $faturat = FaturaPije::where('created_at','>', $start->setTime(7,00,00))->orderBy('created_at','desc')->get();
-
         }
 
+        if ($request->user)
+        {
+            if ($request->user != "all" || $request->user != "")
+            {
+                $faturat = $faturat->where('user_id',$request->user);
+
+            }
+        }
+
+        $faturat = $faturat->orderBy('updated_at','desc')->get();
+
         $data = [
+            'pijet' => $pijet,
+            'users' => $users,
             'day' => $day,
             'faturat' => $faturat,
             'totali' => $faturat->sum('price')
@@ -125,7 +129,7 @@ class FaturaController extends Controller
 
     public function update($id, Request $request)
     {
-        return $request;
+        // return $request;
         $pija = Pije::find($id);
         $pija->name = $request->name;
         $pija->price = $request->price;
