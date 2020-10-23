@@ -20,6 +20,7 @@ class FaturaController extends Controller
     public function index(Request $request)
     {
 
+        // return isset($request->sony != 'all');
         $request->day ? $day = $request->day : $day = today()->toDateString();
         $start = new Carbon($day);
         $sonys = Sony::all();
@@ -29,7 +30,7 @@ class FaturaController extends Controller
 
         if ($request->sony)
         {
-            if ($request->sony != "all" || $request->sony != "")
+            if ($request->sony != 0 || $request->sony != "")
             {
                 $faturat = $faturat->where('sony_id',$request->sony);
             }
@@ -37,7 +38,7 @@ class FaturaController extends Controller
 
         if ($request->user)
         {
-            if ($request->user != "all" || $request->user != "")
+            if ($request->user != 0 || $request->user != "")
             {
                 $faturat = $faturat->where('user_id',$request->user);
 
@@ -50,11 +51,13 @@ class FaturaController extends Controller
             'sonys' => $sonys,
             'users' => $users,
             'day' => $day,
+            'selected_sony' => $request->sony,
+            'selected_user' => $request->user,
             'faturat' => $faturat,
             'totali' => $faturat->sum('price')
         ];
 
-        return $data;
+        // return $data;
 
         return view('admin-sony',$data);
     }
@@ -63,7 +66,7 @@ class FaturaController extends Controller
     {
         $request->day ? $day = $request->day : $day = today()->toDateString();
         $start = new Carbon($day);
-        $pijet = Pije::all();
+        $pijet = Pije::get(['id','name']);
         $users = User::all();
 
         $faturat = FaturaPije::where('updated_at','>', $start->setTime(7,0,0))->where('paguar',1);
@@ -91,9 +94,13 @@ class FaturaController extends Controller
             'pijet' => $pijet,
             'users' => $users,
             'day' => $day,
+            'selected_pija' => $request->pija,
+            'selected_user' => $request->user,
             'faturat' => $faturat,
             'totali' => $faturat->sum('price')
         ];
+
+        // return $data;
 
         return view('sales',$data);
     }

@@ -30,7 +30,6 @@ class HomeController extends Controller
         if (now()->isoFormat('OH')>7)
         {
             //para 12
-            // return "test";
             $fatura = Fatura::where('created_at','>',today()->setTime(7,0,0));
             $faturapije = FaturaPije::where('updated_at','>',today()->setTime(7,0,0))->where('paguar',1);
         } else 
@@ -43,12 +42,12 @@ class HomeController extends Controller
 
         if ($request->user()->is_admin)
         {
-            $fatura = $fatura->get();
-            $faturapije = $faturapije->get();
+            $fatura = $fatura->orderBy('created_at','desc')->get();
+            $faturapije = $faturapije->orderBy('created_at','desc')->get();
         } else
         {
-            $fatura = $fatura->where('user_id',$request->user()->id)->get();
-            $faturapije = $faturapije->where('user_id',$request->user()->id)->get();
+            $fatura = $fatura->where('user_id',$request->user()->id)->orderBy('created_at','desc')->get();
+            $faturapije = $faturapije->where('user_id',$request->user()->id)->orderBy('created_at','desc')->get();
         }
 
         $stock = Pije::get(['name','qty']);
@@ -62,8 +61,8 @@ class HomeController extends Controller
             'stock' => $stock
         ];
 
-        return $data;
+        // return $data;
 
-        return view('home');
+        return view('home',$data);
     }
 }

@@ -26,7 +26,8 @@
             <td>{{ $pija->name }}</td>
             <td>{{ $pija->price }} €</td>
             <td>{{ $pija->qty }}</td>
-            <td class="text-center"><a href="/pije/update/{{$pija->id}}" class="btn btn-pill btn-dark mr-2"> Ndrysho</a>
+            <td class="text-center">
+                {{-- <a href="/pije/update/{{$pija->id}}" class="btn btn-pill btn-dark mr-2"> Ndrysho</a> --}}
             <button onclick="fshije({{$pija->id}})" class="btn btn-pill btn-youtube"> Fshije</button>
             </tr>
         @endforeach
@@ -47,11 +48,6 @@
             method: "DELETE", 
         }).then(res => {
             location.replace("/admin/pije");
-            // console.log(res.body)
-            // var modal = $('#fatura').modal();
-            // modal.find('.modal-content').text(res);
-            // modal.show(true);
-
         });
         } else {
         txt = "You pressed Cancel!";

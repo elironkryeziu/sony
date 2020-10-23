@@ -1,6 +1,7 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-show" id="sidebar">
       <div class="c-sidebar-brand d-lg-down-none">
-      Sony Playstation
+        <p class="font-weight-bold">GAME CENTER - RAHOVEC</p>
+
         
       </div>
       <ul class="c-sidebar-nav">
@@ -37,11 +38,15 @@
              Menaxho Pijet
             </a>
             </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/register">
+            Regjistro puntore te ri
+               </a>
+               </li>
             @endif
             @endif
-        <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+            <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link font-weight-bold c-sidebar-nav-link-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-             Logout</a></li>
+             PERFUNDO</a></li>
         
       </ul>
     </div>

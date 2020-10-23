@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@coreui/icons": "^1.0.1"
+        "@coreui/icons": "^1.0.1",
+        "perfect-scrollbar": "^1.5.0"
     }
 }

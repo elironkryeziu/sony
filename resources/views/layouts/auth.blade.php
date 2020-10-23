@@ -7,7 +7,7 @@
  <!-- CoreUI CSS -->
  <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
 
- <title>Sony</title>
+ <title>Game Center - Rahovec</title>
  </head>
  <body class="c-app flex-row align-items-center">
                 @yield('content')

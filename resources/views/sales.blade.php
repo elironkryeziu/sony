@@ -8,24 +8,32 @@
 
         <form action="{{ route('faturatPije') }}" method="get">
         @csrf
-        <p>Zgjedh daten:<p>
+        <p>Data prej:<p>
             <input type="date" name='day' id="datepicker" value="{{ $day }}"></p>
 
             <label>Pija:</label>
-            <select name="sony" id="sony">
-            <option value=""></option>
-            <option value="all">Te gjithe</option>
+            <select name="pija" id="pija">
+            <option value=0 selected>Te gjitha</option>
             @foreach ($pijet as $pije)
+                @if ($pije->id == $selected_pija)
+                    <option value="{{ $pije->id }}" selected>{{ $pije->name }}</option>
+                @else
                 <option value="{{ $pije->id }}">{{ $pije->name }}</option>
+                @endif
             @endforeach
             </select>
 
+           
+
             <label>Puntori:</label>
             <select name="user" id="user">
-            <option value=""></option>
-            <option value="all">Te gjithe</option>
+            <option value=0 selected>Te gjithe</option>
             @foreach ($users as $user)
+            @if ($user->id == $selected_user)
+                <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+            @else
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endif
             @endforeach
             </select>
 
@@ -35,32 +43,16 @@
         </div>
         </form>
 
-        <div class="row">
+        <div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header">Totali</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $totali }} €</h5>
+            </div>
+        </div> 
+
         
 
-        <ul style="list-style:none; margin:0px; padding:0px;">
-        <li>
-        <a href="/admin/shitjet?period=month" class="btn btn-link">Shitjet kete muaj</a>
-        </li>
-        <li>
-        <a href="/admin/shitjet?period=week" class="btn btn-link">Shitjet kete jave</a>
-        </li>
-        <li>
-        <a href="/admin/shitjet?period=day" class="btn btn-link">Shitjet ne 24 oret e fundit</a>
-        </li>
-        </ul>
-
-        <div class="card bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">Totali</div>
-        <div class="card-body">
-            <h5 class="card-title">{{ $totali }} €</h5>
-        </div>
-        </div>
-
-        </div>
-        
-
-        <table class="table table-bordered">
+        <table class="table table-responsive-sm table-bordered table-striped table-sm">
         <thead>
             <tr>
             <th scope="col">#</th>
@@ -77,14 +69,14 @@
         @foreach ($faturat as $fatura)
             <tr>
             <th scope="row">{{$loop->index+1}}</th>
-            <td>Sony {{ $fatura->pija->name }}</td>
+            <td>{{ $fatura->pija->name }}</td>
             <td>{{ $fatura->price }} €</td>
             <td>{{ $fatura->paguar == 1 ? 'PO' : 'JO' }}</td>
             <td>{{ $fatura->user->name }}</td>
             <td>{{ $fatura->soldAt }}</td>
             <td>{{ $fatura->paidAt }}</td>
             <td>{{ $fatura->soldDate }}</td>
-            </td>
+
             </tr>
         @endforeach
         </tbody>

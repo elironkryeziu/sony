@@ -3,10 +3,18 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-                {{-- <img class="card-img-top" src="{{ asset('storage/controller.png') }}"> --}}
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div class="col-md-8 text-center">
+            
+
+
+                <div class="card">
+                <div class="card-header bg-light">
+                    <img class="card-img-top" style="width: 420px;" src="{{ asset('storage/logo.png') }}">
+            <br>
+            {{-- <p class="h3">GAME CENTER - RAHOVEC</p> --}}
+
+            <br><br>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -52,16 +60,16 @@
                         </div> --}}
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-8 offset-md-2">
+                                <button type="submit" class="btn bg-light">
                                     {{ __('Login') }}
                                 </button>
 
-                                {{-- @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        E keni harruar passwordin?
                                     </a>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
                     </form>

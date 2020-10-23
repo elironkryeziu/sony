@@ -108,19 +108,10 @@
             method: "POST", 
         }).then(res => {
             location.replace("/sony");
-            // console.log(res.body)
-            // var modal = $('#fatura').modal();
-            // modal.find('.modal-content').text(res);
-            // modal.show(true);
-
         });
         } else {
         txt = "You pressed Cancel!";
         }
-    }
-    function shfaqFaturen()
-    {
-
     }
 </script>
 
