@@ -7,7 +7,7 @@
         <div class="container">
         <a href="/admin/pije" class="btn btn-secondary mb-4">< Kthehu</a>
         <h3>Furnizim i ri:</h3>
-        <form action="{{ route('fatura') }}" method="post">
+        <form action="{{ route('furnizim') }}" method="post">
         @csrf
         @foreach ($pijet as $pija)
         <div class="form-group">

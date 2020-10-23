@@ -26,6 +26,7 @@
  @include('partials.menu')
  <div class="c-wrapper">
 <header class="c-header c-header-light c-header-fixed">
+    {{-- <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li> --}}
 
 </header>
     <div class="c-body">

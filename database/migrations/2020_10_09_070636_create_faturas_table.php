@@ -16,7 +16,7 @@ class CreateFaturasTable extends Migration
         Schema::create('fatura', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sony_id');
-            $table->enum('type', [2, 4]);	
+            $table->integer('type');	
             $table->decimal('price',9,3);
             $table->timestamp('start', 0);
             $table->integer('minutes');	
@@ -47,7 +47,7 @@ class CreateFaturasTable extends Migration
         Schema::create('sony_active', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sony_id');
-            $table->enum('type', [2, 4]);	
+            $table->integer('type');	
             $table->timestamp('start', 0);
             $table->unsignedBigInteger('user_id');
 
