@@ -56,10 +56,17 @@ class SonyController extends Controller
 
     public function start(Request $request)
     {
-        // return intval($request->type);
+        if ($request->type)
+        {
+            $type = intval($request->type);
+        } else 
+        {
+            $type = 2;
+        }
+
         $f_aktive = FaturaAktive::create([
             'sony_id' => intval($request->sony_id),
-            'type' => intval($request->type),
+            'type' => $type,
             'start' => now(),
             'user_id' => $request->user()->id
         ]);
